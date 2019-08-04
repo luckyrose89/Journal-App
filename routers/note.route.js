@@ -4,7 +4,7 @@ const noteRouter = express.Router();
 const { noteCtrl } = require("../controllers/index");
 
 noteRouter.get("/", noteCtrl.getAll);
-noteRouterpost("/", noteCtrl.addNote);
+noteRouter.post("/", noteCtrl.addNote);
 
 noteRouter.get("/:noteId", noteCtrl.getNote);
 noteRouter.put("/:noteId", noteCtrl.updateNote);

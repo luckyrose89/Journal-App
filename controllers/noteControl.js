@@ -57,7 +57,7 @@ const updateNote = async (req, res, next) => {
 // Delete a note
 const deleteNote = async (req, res, next) => {
   try {
-    const noteToDelete = Note.findOneAndDelete({
+    const noteToDelete = await Note.findOneAndDelete({
       _id: req.params.noteId
     });
     return res.status(200).json(noteToDelete);
