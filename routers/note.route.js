@@ -10,8 +10,4 @@ noteRouter.get("/:noteId", noteCtrl.getNote);
 noteRouter.put("/:noteId", noteCtrl.updateNote);
 noteRouter.delete("/:noteId", noteCtrl.deleteNote);
 
-// Signup & Signin routes
-noteRouter.post("/register");
-noteRouter.post("/signin");
-
 module.exports = noteRouter;

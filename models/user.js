@@ -1,25 +1,28 @@
 const mongoose = require("mongoose");
+var bcrypt = require("bcrypt");
+const uniqueValidator = require("mongoose-unique-validator");
 const Schema = mongoose.Schema();
-var bcrypt = require("bcryptjs");
 
 const userSchema = new Schema({
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
-  password: {
+  passwordHash: {
     type: String,
     required: true
   }
 });
 
-module.exports = mongoose.model("User", userSchema);
+userSchema.plugin(uniqueValidator);
 
-module.exports.createUser = function(newUser, callback) {
-  bcrypt.genSalt(10, function(err, salt) {
-    bcrypt.hash(newUser.password, salt, function(err, hash) {
-      newUser.password = hash;
-      newUser.save(callback);
-    });
-  });
+userSchema.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.passwordHash);
 };
+
+userSchema.virtual("password").set(function(value) {
+  this.passwordHash = bcrypt.hashSync(value, 12);
+});
+
+module.exports = mongoose.model("User", userSchema);
