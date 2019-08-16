@@ -47,7 +47,7 @@ authRouter.post("/login", (req, res, next) => {
 
     // login user
     const token = jwt.sign(user.toObject(), process.env.SECRET);
-    return res.send({ success: true, user: User.toObject(), token });
+    return res.send({ success: true, user: user.toObject(), token });
   });
 });
 
