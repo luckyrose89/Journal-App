@@ -34,4 +34,11 @@ userSchema.methods.checkPassword = function(passwordAttempt, callback) {
   });
 };
 
+// remove password before sending to client
+userSchema.methods.withoutPassword = function() {
+  const user = this.toObject();
+  delete user.password;
+  return user;
+};
+
 module.exports = mongoose.model("User", userSchema);

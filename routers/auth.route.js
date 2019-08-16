@@ -34,20 +34,28 @@ authRouter.post("/signup", (req, res, next) => {
 });
 
 //  Login existing users to the app
-authRouter.post("/login", (req, res, next) => {
+authRouter.post("/login", (req, res) => {
   User.findOne({ username: req.body.username.toLowerCase() }, (err, user) => {
-    if (err) {
-      return next(err);
+    if (err) return res.status(500).send(err);
+    if (!user) {
+      return res
+        .status(403)
+        .send({ success: false, err: "Username or password are incorrect" });
     }
-
-    if (!user || user.password != req.body.password) {
-      res.status(500);
-      return next(new Error("username or password is incorrect"));
-    }
-
-    // login user
-    const token = jwt.sign(user.toObject(), process.env.SECRET);
-    return res.send({ success: true, user: user.toObject(), token });
+    user.checkPassword(req.body.password, (err, match) => {
+      if (err) return res.status(500).send(err);
+      if (!match)
+        return res.status(401).send({
+          success: false,
+          message: "Username or password are incorrect"
+        });
+      const token = jwt.sign(user.withoutPassword(), process.env.SECRET);
+      return res.send({
+        token: token,
+        user: user.withoutPassword(),
+        success: true
+      });
+    });
   });
 });
 
