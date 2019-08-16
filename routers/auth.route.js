@@ -25,10 +25,10 @@ authRouter.post("/signup", (req, res, next) => {
         return next(err);
       }
 
-      const token = jwt.sign(user.toObject(), process.env.SECRET);
+      const token = jwt.sign(user.withoutPassword(), process.env.SECRET);
       return res
         .status(201)
-        .send({ success: true, user: user.toObject(), token });
+        .send({ success: true, user: user.withoutPassword(), token });
     });
   });
 });
