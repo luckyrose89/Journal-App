@@ -6,7 +6,7 @@ const Note = require("../models/schema");
 // Get all notes
 const getAll = async (req, res, next) => {
   try {
-    const notes = await Note.find();
+    const notes = await Note.find({ user: req.user._id });
     return res.status(200).json(notes);
   } catch (err) {
     return next(err);
@@ -16,6 +16,7 @@ const getAll = async (req, res, next) => {
 // Create a note
 const addNote = async (req, res, next) => {
   const note = new Note(req.body);
+  note.user = req.user._id;
   try {
     const newNote = await note.save();
     return res.status(200).json(newNote);
@@ -28,21 +29,23 @@ const addNote = async (req, res, next) => {
 // Get a note
 const getNote = async (req, res, next) => {
   try {
-    const note = await Note.findById({
-      _id: req.params.noteId
+    const note = await Note.findOne({
+      _id: req.params.noteId,
+      user: req.user._id
     });
     return res.status(200).json(note);
   } catch (err) {
     res.status(404);
-    return next(err);
+    return next(new Error("Entry not found!!"));
   }
 };
 
 // Update a note
 const updateNote = async (req, res, next) => {
   try {
-    const note = await Note.findById({
-      _id: req.params.noteId
+    const note = await Note.findOneAndUpdate({
+      _id: req.params.noteId,
+      user: req.user._id
     });
     note.title = req.body.title;
     note.body = req.body.body;
@@ -57,8 +60,9 @@ const updateNote = async (req, res, next) => {
 // Delete a note
 const deleteNote = async (req, res, next) => {
   try {
-    const noteToDelete = await Note.findOneAndDelete({
-      _id: req.params.noteId
+    const noteToDelete = await Note.findOneAndRemove({
+      _id: req.params.noteId,
+      user: req.user._id
     });
     return res.status(200).json(noteToDelete);
   } catch (err) {

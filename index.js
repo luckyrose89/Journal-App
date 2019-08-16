@@ -4,6 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { noteRouter } = require("./routers/index");
+const { authRouter } = require("./routers/index");
 const PORT = 5000 || process.env.PORT;
 
 const app = express();
@@ -31,6 +32,7 @@ app.use(
 );
 
 app.use("/note", noteRouter);
+app.use("/auth", authRouter);
 app.use((err, req, res, next) => {
   console.error(err);
   return res.send({ error: err.message });
