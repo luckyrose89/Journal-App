@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Journal API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+  </head>
+  <body class="container-fluid bg-light">
+    <header class="">
+      <p class="pt-2 mr-auto mr-lg-0 display-4">Welcome to Journal API</p>
+    </header>
+    <section>
+      <h5 class="border-bottom border-gray pb-2 mb-0">
+        Allowed HTTP requests:
+      </h5>
+      <ul class="text-muted pt-3">
+        <li>GET</li>
+        <li>POST</li>
+        <li>PUT</li>
+        <li>DELETE</li>
+      </ul>
+    </section>
+    <section>
+      <h5 class="border-bottom border-gray pb-2 mb-0">Collections</h5>
+      <div>
+        <h6 class="text-muted pt-3">Users</h6>
+        <p>Routes:</p>
+        <ul>
+          <li><code>/auth/signup</code> POST request to register new users</li>
+          <li><code>/auth/login</code> POST request to login existing users</li>
+        </ul>
+      </div>
+      <div>
+        <h6 class="text-muted pt-3">Notes</h6>
+        <p>Routes (cannot be accessed without user authentication):</p>
+        <ul>
+          <li><code>/api/note</code> GET all notes created by user</li>
+          <li>
+            <code>/api/note/:noteId/:userId</code> GET selected note created by
+            user
+          </li>
+          <li><code>/api/note</code> POST a new note created by user</li>
+          <li>
+            <code>/api/note/:noteId/:userId</code> PUT (update) a note created
+            by user
+          </li>
+          <li>
+            <code>/api/note/:noteId/:userId</code> DELETE a note created by user
+          </li>
+        </ul>
+      </div>
+    </section>
+    <footer class="footer mt-auto py-3">
+      <div class="text-center">
+        <span></span>Made with ❤️ by
+        <a href="https://github.com/luckyrose89">Divya Mathur</a></span>
+      </div>
+    </footer>
+  </body>
+</html>
