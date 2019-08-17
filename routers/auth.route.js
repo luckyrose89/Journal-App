@@ -40,7 +40,7 @@ authRouter.post("/login", (req, res) => {
         .status(403)
         .send({ err: "Username or password are incorrect" });
     }
-    user.checkPassword(req.body.password, (err, match) => {
+    user.validatePassword(req.body.password, (err, match) => {
       if (err) return res.status(500).send(err);
       if (!match)
         return res.status(401).send({

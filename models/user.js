@@ -27,8 +27,8 @@ userSchema.pre("save", function(next) {
 });
 
 // Compare and match passwords
-userSchema.methods.checkPassword = function(passwordAttempt, callback) {
-  bcrypt.compare(passwordAttempt, this.password, (err, isMatch) => {
+userSchema.methods.validatePassword = function(passwordEntered, callback) {
+  bcrypt.compare(passwordEntered, this.password, (err, isMatch) => {
     if (err) return callback(err);
     callback(null, isMatch);
   });
