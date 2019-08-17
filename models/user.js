@@ -19,7 +19,7 @@ const userSchema = new Schema({
 userSchema.pre("save", function(next) {
   const user = this;
   if (!user.isModified("password")) return next();
-  bcrypt.hash(user.password, 10, (err, hash) => {
+  bcrypt.hash(user.password, 12, (err, hash) => {
     if (err) return next(err);
     user.password = hash;
     next();
@@ -35,7 +35,7 @@ userSchema.methods.checkPassword = function(passwordAttempt, callback) {
 };
 
 // remove password before sending to client
-userSchema.methods.withoutPassword = function() {
+userSchema.methods.removePassword = function() {
   const user = this.toObject();
   delete user.password;
   return user;
