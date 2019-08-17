@@ -1,6 +1,10 @@
 {
   "name": "journal-app",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.15.0"
+
+  },
   "description": "A journal app for users to document their moods",
   "main": "index.js",
   "scripts": {
