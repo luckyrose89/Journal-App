@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const expressjwt = require("express-jwt");
 const { noteRouter } = require("./routers/index");
 const { authRouter } = require("./routers/index");
-const PORT = 5000 || process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
