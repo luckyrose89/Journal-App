@@ -1,9 +1,12 @@
 import React from "react";
+import Header from "../src/Landing/header";
+import Footer from "../src/Landing/footer";
 
 function App() {
   return (
     <div className="App">
-      <h1>Journal App</h1>
+      <Header />
+      <Footer />
     </div>
   );
 }
