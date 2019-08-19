@@ -5,7 +5,7 @@ function Footer() {
     <div>
       <footer>
         <p>
-          Made by <a>Divya Mathur</a>
+          Made by <a href="https://github.com/luckyrose89">Divya Mathur</a>
         </p>
       </footer>
     </div>

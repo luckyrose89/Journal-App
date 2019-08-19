@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -6,8 +7,12 @@ function Header() {
       <h1>Journal App</h1>
       <ul>
         <li>About</li>
-        <li>Register</li>
-        <li>Login</li>
+        <Link to="/signup">
+          <li>Register</li>
+        </Link>
+        <Link to="/login">
+          <li>Login</li>
+        </Link>
       </ul>
     </div>
   );
