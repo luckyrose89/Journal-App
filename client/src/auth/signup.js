@@ -32,7 +32,9 @@ class Signup extends React.Component {
       .signup(this.state)
       .then(() => this.props.history.push("/notes"))
       .catch(err => {
-        this.setState({ errorMessage: err.response.data.message });
+        this.setState({
+          errorMessage: err.response.data.message
+        });
       });
   };
 

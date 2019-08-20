@@ -1,4 +1,5 @@
 import React from "react";
+import { withAppContext } from "../AppContext";
 
 class Login extends React.Component {
   constructor() {
@@ -27,6 +28,14 @@ class Login extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.props
+      .login(this.state)
+      .then(() => this.props.history.push("/notes"))
+      .catch(err => {
+        this.setState({
+          errorMessage: err.response.data.message
+        });
+      });
   };
 
   render() {
@@ -57,4 +66,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withAppContext(Login);
