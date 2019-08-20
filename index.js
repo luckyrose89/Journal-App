@@ -35,6 +35,9 @@ app.use(
   })
 );
 
+// Serve static files from React build
+app.use(express.static(path.join(__dirname, "client/build")));
+
 app.use("/api", expressjwt({ secret: process.env.SECRET }));
 
 // Add routes
