@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <div>
-      <h1>Journal App</h1>
+      <h1>Thoughts & More</h1>
       <ul>
         <li>About</li>
         <Link to="/signup">

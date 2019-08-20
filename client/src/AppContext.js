@@ -65,9 +65,42 @@ export class AppContextProvider extends React.Component {
     });
   };
 
-  signup = () => {};
+  signup = userData => {
+    axios.post("/auth/signup", userData).then(response => {
+      const { user, token } = response.data;
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", token);
+      this.setState({
+        user,
+        token
+      });
+      return response;
+    });
+  };
 
-  login = () => {};
+  login = userData => {
+    axios.post("/auth/login", userData).then(response => {
+      const { user, token } = response.data;
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", token);
+      this.setState({
+        user,
+        token
+      });
+      this.getNotes();
+      return response;
+    });
+  };
+
+  logout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    this.setState({
+      notes: [],
+      user: {},
+      token: ""
+    });
+  };
 
   render() {
     return (
