@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "engines": {
     "node": "10.15.0"
-
   },
   "description": "A journal app for users to document their moods",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
+    "heroku-postbuild": "cd client && yarn && yarn run build",
     "dev": "nodemon index.js"
   },
   "author": "Divya Mathur",
