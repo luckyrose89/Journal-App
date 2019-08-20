@@ -1,6 +1,15 @@
 import React from "react";
 import axios from "axios";
 
+// create an instance of axios to intercept http requests
+const noteAxios = axios.create();
+
+noteAxios.interceptors.request.use(config => {
+  const token = localStorage.getItem("token");
+  config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
+
 // Create an instance of Context
 const AppContext = React.createContext();
 
@@ -10,8 +19,8 @@ export class AppContextProvider extends React.Component {
     super();
     this.state = {
       notes: [],
-      user: {},
-      token: ""
+      user: JSON.parse(localStorage.getItem("user")) || {},
+      token: localStorage.getItem("token") || ""
     };
   }
 
@@ -20,14 +29,14 @@ export class AppContextProvider extends React.Component {
   }
 
   getNotes = () => {
-    return axios.get("/api/note").then(response => {
-      this.setState({ notes: response.notes });
+    return noteAxios.get("/api/note").then(response => {
+      this.setState({ notes: response.data });
       return response;
     });
   };
 
   addNote = newNote => {
-    return axios.post("/api/note", newNote).then(response => {
+    return noteAxios.post("/api/note", newNote).then(response => {
       this.setState(prevState => {
         return { notes: [...prevState.notes, response.data] };
       });
@@ -36,13 +45,13 @@ export class AppContextProvider extends React.Component {
   };
 
   getNote = noteId => {
-    return axios.get(`/api/note/${noteId}`).then(response => {
+    return noteAxios.get(`/api/note/${noteId}`).then(response => {
       return response.data;
     });
   };
 
   editNote = (noteId, note) => {
-    return axios.put(`/api/note/${noteId}`, note).then(response => {
+    return noteAxios.put(`/api/note/${noteId}`, note).then(response => {
       this.setState(prevState => {
         const updatedNotes = prevState.notes.map(note => {
           return note._id === response.data._id ? response.data : note;
@@ -54,7 +63,7 @@ export class AppContextProvider extends React.Component {
   };
 
   deleteNote = noteId => {
-    return axios.delete(`/api/note/${noteId}`).then(response => {
+    return noteAxios.delete(`/api/note/${noteId}`).then(response => {
       this.setState(prevState => {
         const updatedNotes = prevState.notes.filter(note => {
           return note._Id !== noteId;
@@ -66,7 +75,7 @@ export class AppContextProvider extends React.Component {
   };
 
   signup = userData => {
-    axios.post("/auth/signup", userData).then(response => {
+    return noteAxios.post("/auth/signup", userData).then(response => {
       const { user, token } = response.data;
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", token);
@@ -79,7 +88,7 @@ export class AppContextProvider extends React.Component {
   };
 
   login = userData => {
-    axios.post("/auth/login", userData).then(response => {
+    return noteAxios.post("/auth/login", userData).then(response => {
       const { user, token } = response.data;
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", token);
@@ -110,6 +119,9 @@ export class AppContextProvider extends React.Component {
           getNote: this.getNote,
           editNote: this.editNote,
           deleteNote: this.deleteNote,
+          signup: this.signup,
+          login: this.login,
+          logout: this.logout,
           ...this.state
         }}
       >

@@ -43,10 +43,10 @@ class NoteForm extends React.Component {
           <label>Body</label>
           <input
             name="body"
-            value="this.state.body"
+            value={this.state.body}
             onChange={this.handleChange}
             type="text"
-            placeHolder="Enter text"
+            placeholder="Enter text"
           />
           <button>Submit</button>
         </form>

@@ -12,10 +12,7 @@ function NoteList(props) {
       <div>
         <NoteForm addNote={props.addNote} />
       </div>
-      <div>
-        Notes:
-        {notes}
-      </div>
+      <div>Notes:</div>
     </div>
   );
 }

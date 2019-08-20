@@ -1,4 +1,5 @@
 import React from "react";
+import { withAppContext } from "../AppContext";
 
 class Signup extends React.Component {
   constructor() {
@@ -27,12 +28,18 @@ class Signup extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.props
+      .signup(this.state)
+      .then(() => this.props.history.push("/notes"))
+      .catch(err => {
+        this.setState({ errorMessage: err.response.data.message });
+      });
   };
 
   render() {
     return (
       <div>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <h4>Signup</h4>
           <label>Username:</label>
           <input
@@ -45,7 +52,7 @@ class Signup extends React.Component {
           <label>Password:</label>
           <input
             onChange={this.handleChange}
-            value={this.state.username}
+            value={this.state.password}
             name="password"
             type="text"
             placeholder="Password"
@@ -57,4 +64,4 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+export default withAppContext(Signup);
