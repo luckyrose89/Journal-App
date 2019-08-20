@@ -9,11 +9,23 @@ class NoteForm extends React.Component {
     };
   }
 
-  handleChange = e => {};
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
-  clearInputs = () => {};
+  clearInputs = () => {
+    this.setState({
+      title: "",
+      body: ""
+    });
+  };
 
-  handleSubmit = e => {};
+  handleSubmit = e => {
+    e.preventDefault();
+  };
 
   render() {
     return (

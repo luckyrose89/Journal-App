@@ -10,9 +10,24 @@ class Login extends React.Component {
     };
   }
 
-  handleChange = e => {};
-  clearInputs = () => {};
-  handleSubmit = e => {};
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  clearInputs = () => {
+    this.setState({
+      username: "",
+      password: "",
+      errorMessage: ""
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+  };
 
   render() {
     return (
