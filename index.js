@@ -50,12 +50,8 @@ app.use((err, req, res, next) => {
   return res.send({ message: err.message });
 });
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/build/index.html"));
-});
 app.get("*", function(req, res) {
-  res.status(404);
-  res.send("Sorry the page you're looking for does not exist!");
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 
 app.listen(PORT, () => {
