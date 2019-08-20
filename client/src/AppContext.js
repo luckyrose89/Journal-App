@@ -30,6 +30,7 @@ export class AppContextProvider extends React.Component {
 
   getNotes = () => {
     return noteAxios.get("/api/note").then(response => {
+      console.log(response);
       this.setState({ notes: response.data });
       return response;
     });
@@ -117,6 +118,7 @@ export class AppContextProvider extends React.Component {
         value={{
           getNotes: this.getNotes,
           getNote: this.getNote,
+          addNote: this.addNote,
           editNote: this.editNote,
           deleteNote: this.deleteNote,
           signup: this.signup,

@@ -5,7 +5,8 @@ class NoteForm extends React.Component {
     super();
     this.state = {
       title: "",
-      body: ""
+      body: "",
+      errorMessage: ""
     };
   }
 
@@ -25,6 +26,16 @@ class NoteForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.props
+      .addNote(this.state)
+      .then(response => {
+        this.clearInputs();
+      })
+      .catch(err =>
+        this.setState({
+          errorMessage: err.response.data.message
+        })
+      );
   };
 
   render() {
