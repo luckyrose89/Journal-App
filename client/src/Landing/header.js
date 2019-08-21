@@ -10,7 +10,6 @@ function Header(props) {
         <React.Fragment>
           <div>
             <ul>
-              <li>About</li>
               <Link to="/signup">
                 <li>Register</li>
               </Link>
@@ -24,7 +23,7 @@ function Header(props) {
         <React.Fragment>
           <div>
             <ul>
-              <li>About</li>
+              <li>Hi {props.user.username}!</li>
               <li onClick={() => props.logout()}>Logout</li>
             </ul>
           </div>
