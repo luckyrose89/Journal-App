@@ -1,5 +1,6 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import ProtectRoutes from "../src/auth/protectedRoutes";
 import Header from "../src/Landing/header";
 import Footer from "../src/Landing/footer";
 import NoteList from "../src/notes/noteList";
@@ -13,7 +14,7 @@ function App() {
       <Switch>
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
-        <Route path="/notes" component={NoteList} />
+        <ProtectRoutes path="/notes" component={NoteList} />
       </Switch>
       <Footer />
     </div>

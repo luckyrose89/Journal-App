@@ -30,7 +30,6 @@ export class AppContextProvider extends React.Component {
 
   getNotes = () => {
     return noteAxios.get("/api/note").then(response => {
-      console.log(response);
       this.setState({ notes: response.data });
       return response;
     });
