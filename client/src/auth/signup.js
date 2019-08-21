@@ -30,7 +30,10 @@ class Signup extends React.Component {
     e.preventDefault();
     this.props
       .signup(this.state)
-      .then(() => this.props.history.push("/notes"))
+      .then(() => {
+        this.clearInputs();
+        this.props.history.push("/notes");
+      })
       .catch(err => {
         this.setState({
           errorMessage: err.response.data.message
@@ -61,6 +64,7 @@ class Signup extends React.Component {
           />
           <button>Submit</button>
         </form>
+        {<p>{this.state.errorMessage}</p>}
       </div>
     );
   }
