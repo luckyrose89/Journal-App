@@ -43,7 +43,7 @@ const getNote = async (req, res, next) => {
 // Update a note
 const updateNote = async (req, res, next) => {
   try {
-    const note = await Note.findOneAndUpdate({
+    const note = await Note.findOne({
       _id: req.params.noteId,
       user: req.user._id
     });

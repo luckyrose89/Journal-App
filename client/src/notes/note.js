@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Note(props) {
   return (
@@ -6,7 +7,9 @@ function Note(props) {
       <h4>{props.note.title}</h4>
       <p>{props.note.body}</p>
       <div>
-        <button>Edit</button>
+        <button>
+          <Link to={"/edit/" + props.note._id}>Edit</Link>
+        </button>
         <button>Delete</button>
       </div>
     </div>
