@@ -1,21 +1,37 @@
 import React from "react";
+import { withAppContext } from "../AppContext";
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header(props) {
   return (
-    <div>
+    <nav>
       <h1>Thoughts & More</h1>
-      <ul>
-        <li>About</li>
-        <Link to="/signup">
-          <li>Register</li>
-        </Link>
-        <Link to="/login">
-          <li>Login</li>
-        </Link>
-      </ul>
-    </div>
+      {!props.token ? (
+        <React.Fragment>
+          <div>
+            <ul>
+              <li>About</li>
+              <Link to="/signup">
+                <li>Register</li>
+              </Link>
+              <Link to="/login">
+                <li>Login</li>
+              </Link>
+            </ul>
+          </div>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <div>
+            <ul>
+              <li>About</li>
+              <li onClick={() => props.logout()}>Logout</li>
+            </ul>
+          </div>
+        </React.Fragment>
+      )}
+    </nav>
   );
 }
 
-export default Header;
+export default withAppContext(Header);
