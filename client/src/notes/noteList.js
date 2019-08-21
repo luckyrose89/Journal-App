@@ -5,7 +5,7 @@ import { withAppContext } from "../AppContext";
 
 function NoteList(props) {
   const notes = props.notes.map(note => {
-    return <Note key={note._id} note={note} />;
+    return <Note key={note._id} note={note} delete={props.deleteNote} />;
   });
   return (
     <div>

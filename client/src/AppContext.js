@@ -70,6 +70,7 @@ export class AppContextProvider extends React.Component {
         });
         return { notes: updatedNotes };
       });
+      this.getNotes();
       return response;
     });
   };

@@ -10,7 +10,7 @@ function Note(props) {
         <button>
           <Link to={"/edit/" + props.note._id}>Edit</Link>
         </button>
-        <button>Delete</button>
+        <button onClick={() => props.delete(props.note._id)}>Delete</button>
       </div>
     </div>
   );
