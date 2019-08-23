@@ -1,12 +1,8 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import ProtectRoutes from "../src/auth/protectedRoutes";
-import Header from "../src/Landing/header";
-import Footer from "../src/Landing/footer";
-import NoteList from "../src/notes/noteList";
-import EditNote from "../src/notes/editNotes";
-import Login from "../src/auth/login";
-import Signup from "../src/auth/signup";
+import { Header, Footer } from "../src/Landing/index";
+import { NoteList, EditNote } from "../src/notes/index";
+import { Login, Signup, ProtectRoutes } from "../src/auth/index";
 
 function App() {
   return (
