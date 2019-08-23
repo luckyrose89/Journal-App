@@ -1,13 +1,12 @@
 import React from "react";
+import { Typography } from "@material-ui/core";
 
 function Footer() {
   return (
-    <div>
-      <footer>
-        <p>
-          Made by <a href="https://github.com/luckyrose89">Divya Mathur</a>
-        </p>
-      </footer>
+    <div id="footer">
+      <Typography align="center">
+        Made by <a href="https://github.com/luckyrose89">Divya Mathur</a>
+      </Typography>
     </div>
   );
 }

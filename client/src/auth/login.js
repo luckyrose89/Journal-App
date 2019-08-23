@@ -1,5 +1,14 @@
 import React from "react";
 import { withAppContext } from "../AppContext";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import {
+  Container,
+  CssBaseline,
+  Avatar,
+  TextField,
+  Button,
+  Typography
+} from "@material-ui/core";
 
 class Login extends React.Component {
   constructor() {
@@ -43,28 +52,55 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <h4>Login</h4>
-          <label>Username:</label>
-          <input
-            name="username"
-            value={this.state.username}
-            onChange={this.handleChange}
-            type="text"
-            placeholder="username"
-          />
-          <label>Password:</label>
-          <input
-            name="password"
-            value={this.state.password}
-            onChange={this.handleChange}
-            type="text"
-            placeholder="password"
-          />
-          <button>Submit</button>
-        </form>
-        {<p>{this.state.errorMessage}</p>}
+      <div className="content-wrapper">
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <div>
+            <Avatar className="lockStyle">
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5" align="center">
+              Sign In
+            </Typography>
+            <form noValidate onSubmit={this.handleSubmit}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                onChange={this.handleChange}
+                value={this.state.username}
+                autoFocus
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                onChange={this.handleChange}
+                value={this.state.password}
+                autoComplete="current-password"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="secondary"
+              >
+                Login
+              </Button>
+            </form>
+            {<p>{this.state.errorMessage}</p>}
+          </div>
+        </Container>
       </div>
     );
   }

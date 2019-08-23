@@ -8,7 +8,7 @@ function NoteList(props) {
     return <Note key={note._id} note={note} delete={props.deleteNote} />;
   });
   return (
-    <div>
+    <div className="content-wrapper">
       <div>
         <NoteForm addNote={props.addNote} />
       </div>
