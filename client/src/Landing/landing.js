@@ -1,7 +1,4 @@
 import React from "react";
-import Header from "./header";
-import Footer from "./footer";
-import NoteList from "../notes/noteList";
 import { Link } from "react-router-dom";
 import { withAppContext } from "../AppContext";
 
