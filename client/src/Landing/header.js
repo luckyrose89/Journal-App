@@ -38,6 +38,10 @@ function Header(props) {
   function handleClose() {
     setAnchorEl(null);
   }
+  function handleLogout() {
+    handleClose();
+    return props.logout();
+  }
   return (
     <Paper>
       <AppBar id="header">
@@ -100,7 +104,7 @@ function Header(props) {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={() => props.logout()}>Logout</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </React.Fragment>
           )}
