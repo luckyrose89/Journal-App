@@ -98,7 +98,9 @@ class Signup extends React.Component {
                 Sign Up
               </Button>
             </form>
-            {<p>{this.state.errorMessage}</p>}
+            <Typography color="error" variant="body1">
+              {this.state.errorMessage}
+            </Typography>
           </div>
         </Container>
       </div>

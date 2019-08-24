@@ -42,6 +42,7 @@ function Header(props) {
     handleClose();
     return props.logout();
   }
+
   return (
     <Paper>
       <AppBar id="header">
