@@ -13,7 +13,7 @@ function App() {
         <Route path="/login" component={Login} />
         <ProtectRoutes path="/notes" component={NoteList} />
         <Route exact path="/" render={() => <Redirect to="/notes" />} />
-        <Route path="/edit/:id" component={EditNote} />
+        <ProtectRoutes path="/edit/:id" component={EditNote} />
       </Switch>
       <Footer />
     </div>
