@@ -22,3 +22,9 @@
   display: block;
   margin: auto;
 }
+
+/* Form style for Journal entry fields*/
+
+.titlePadding {
+  padding-left: 0.5em;
+}
