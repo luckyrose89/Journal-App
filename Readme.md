@@ -1,6 +1,6 @@
 # Welcome to Thoughts & more
 
-Thoughts & more is a note taking application. It can also be used as a personal journal by users to document their daily experiences with their personal accounts. A running instance of this application is deployed at[enter link description here](https://tranquil-tor-91514.herokuapp.com/login)
+Thoughts & more is a note taking application. It can also be used as a personal journal by users to document their daily experiences with their personal accounts. A running instance of this application is deployed at [Heroku](https://tranquil-tor-91514.herokuapp.com/login)
 
 ## Technologies
 
