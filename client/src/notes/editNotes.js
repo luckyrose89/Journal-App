@@ -1,5 +1,7 @@
 import React from "react";
 import { withAppContext } from "../AppContext";
+import { Container, TextField, Button, Typography } from "@material-ui/core";
+import { typography } from "@material-ui/system";
 
 class EditNote extends React.Component {
   constructor() {
@@ -56,28 +58,61 @@ class EditNote extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <h4>Edit Note</h4>
-          <label>Title</label>
-          <input
-            name="title"
-            value={this.state.title}
-            onChange={this.handleChange}
-            type="text"
-            placeholder="title"
-          />
-          <label>Body</label>
-          <input
-            name="body"
-            value={this.state.body}
-            onChange={this.handleChange}
-            type="text"
-            placeholder="Enter text"
-          />
-          <button>Submit</button>
-        </form>
-        {<p>{this.state.errorMessage}</p>}
+      <div className="content-wrapper">
+        <Container maxWidth="lg">
+          <Typography
+            className="titlePadding"
+            align="left"
+            style={{ marginBottom: 15 }}
+            variant="h6"
+          >
+            Edit Note
+          </Typography>
+          <form onSubmit={this.handleSubmit}>
+            <TextField
+              id="outlined-full-width"
+              label="Title"
+              style={{ margin: 8, marginBottom: 15 }}
+              name="title"
+              value={this.state.title}
+              onChange={this.handleChange}
+              type="text"
+              placeholder="title"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+            <TextField
+              id="outlined-full-width"
+              label="Entry"
+              style={{ margin: 8, marginBottom: 15 }}
+              name="body"
+              value={this.state.body}
+              onChange={this.handleChange}
+              placeholder="Enter text"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              style={{ marginLeft: 8 }}
+            >
+              Submit
+            </Button>
+          </form>
+          <Typography color="error" variant="body1">
+            {this.state.errorMessage}
+          </Typography>
+        </Container>
       </div>
     );
   }

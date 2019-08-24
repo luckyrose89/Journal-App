@@ -21,7 +21,8 @@ class NoteForm extends React.Component {
   clearInputs = () => {
     this.setState({
       title: "",
-      body: ""
+      body: "",
+      errorMessage: ""
     });
   };
 
@@ -91,6 +92,9 @@ class NoteForm extends React.Component {
             Submit
           </Button>
         </form>
+        <Typography color="error" variant="body1">
+          {this.state.errorMessage}
+        </Typography>
       </Container>
     );
   }

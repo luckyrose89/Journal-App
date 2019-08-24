@@ -81,6 +81,9 @@ function Header(props) {
                 color="inherit"
               >
                 <AccountCircle />
+                <Typography variant="body1" style={{ paddingLeft: 8 }}>
+                  Hi {props.user.username}
+                </Typography>
               </IconButton>
               <Menu
                 id="menu-appbar"
