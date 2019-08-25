@@ -45,6 +45,9 @@ app.use("/auth", authRouter);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
+  if (err.name === "UnauthorizedError") {
+    res.status(err.status);
+  }
   return res.send({ message: err.message });
 });
 
