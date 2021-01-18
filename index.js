@@ -13,31 +13,30 @@ const app = express();
 // connect to db
 mongoose.set("useCreateIndex", true);
 mongoose.Promise = global.Promise;
-mongoose
-  .connect(process.env.MLAB_URI, {
-    useNewUrlParser: true
-  })
-  .then(
-    () => {
-      console.log("Database is now connected");
-    },
-    err => {
-      console.log("Cannot connect to database + ", err);
-    }
-  );
+mongoose.connect(process.env.MONGODB_URI).then(
+  () => {
+    console.log("Database is now connected");
+  },
+  (err) => {
+    console.log("Cannot connect to database + ", err);
+  }
+);
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
-    extended: true
+    extended: true,
   })
 );
 
 // Serve static files from React build
 app.use(express.static(path.join(__dirname, "client/build")));
 
-app.use("/api", expressjwt({ secret: process.env.SECRET }));
+app.use(
+  "/api",
+  expressjwt({ secret: process.env.SECRET, algorithms: ["RS256"] })
+);
 
 // Add routes
 app.use("/api/note", noteRouter);
@@ -51,7 +50,7 @@ app.use((err, req, res, next) => {
   return res.send({ message: err.message });
 });
 
-app.get("*", function(req, res) {
+app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 
