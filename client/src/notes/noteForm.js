@@ -7,14 +7,14 @@ class NoteForm extends React.Component {
     this.state = {
       title: "",
       body: "",
-      errorMessage: ""
+      errorMessage: "",
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -22,20 +22,21 @@ class NoteForm extends React.Component {
     this.setState({
       title: "",
       body: "",
-      errorMessage: ""
+      errorMessage: "",
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
+    const data = { title: this.state.title, body: this.state.body };
     this.props
-      .addNote(this.state)
-      .then(response => {
+      .addNote(data)
+      .then((response) => {
         this.clearInputs();
       })
-      .catch(err =>
+      .catch((err) =>
         this.setState({
-          errorMessage: err.response.data.message
+          errorMessage: err.response.data.message,
         })
       );
   };
@@ -65,7 +66,7 @@ class NoteForm extends React.Component {
             margin="normal"
             variant="outlined"
             InputLabelProps={{
-              shrink: true
+              shrink: true,
             }}
           />
           <TextField
@@ -80,7 +81,7 @@ class NoteForm extends React.Component {
             margin="normal"
             variant="outlined"
             InputLabelProps={{
-              shrink: true
+              shrink: true,
             }}
           />
           <Button

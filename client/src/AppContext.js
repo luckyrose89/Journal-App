@@ -4,11 +4,20 @@ import axios from "axios";
 // create an instance of axios to intercept http requests
 const noteAxios = axios.create();
 
-noteAxios.interceptors.request.use(config => {
-  const token = localStorage.getItem("token");
-  config.headers.Authorization = `Bearer ${token}`;
-  return config;
-});
+noteAxios.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    config.headers = {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+    return config;
+  },
+  (error) => {
+    Promise.reject(error);
+  }
+);
 
 // Create an instance of Context
 const AppContext = React.createContext();
@@ -20,7 +29,7 @@ export class AppContextProvider extends React.Component {
     this.state = {
       notes: [],
       user: JSON.parse(localStorage.getItem("user")) || {},
-      token: localStorage.getItem("token") || ""
+      token: localStorage.getItem("token") || "",
     };
   }
 
@@ -30,32 +39,32 @@ export class AppContextProvider extends React.Component {
 
   getNotes = () => {
     if (this.state.token !== "") {
-      return noteAxios.get("/api/note").then(response => {
+      return noteAxios.get("/api/note").then((response) => {
         this.setState({ notes: response.data });
         return response;
       });
     }
   };
 
-  addNote = newNote => {
-    return noteAxios.post("/api/note", newNote).then(response => {
-      this.setState(prevState => {
+  addNote = (newNote) => {
+    return noteAxios.post("/api/note", newNote).then((response) => {
+      this.setState((prevState) => {
         return { notes: [...prevState.notes, response.data] };
       });
       return response;
     });
   };
 
-  getNote = noteId => {
-    return noteAxios.get(`/api/note/${noteId}`).then(response => {
+  getNote = (noteId) => {
+    return noteAxios.get(`/api/note/${noteId}`).then((response) => {
       return response.data;
     });
   };
 
   editNote = (noteId, note) => {
-    return noteAxios.put(`/api/note/${noteId}`, note).then(response => {
-      this.setState(prevState => {
-        const updatedNotes = prevState.notes.map(note => {
+    return noteAxios.put(`/api/note/${noteId}`, note).then((response) => {
+      this.setState((prevState) => {
+        const updatedNotes = prevState.notes.map((note) => {
           return note._id === response.data._id ? response.data : note;
         });
         return { notes: updatedNotes };
@@ -64,10 +73,10 @@ export class AppContextProvider extends React.Component {
     });
   };
 
-  deleteNote = noteId => {
-    return noteAxios.delete(`/api/note/${noteId}`).then(response => {
-      this.setState(prevState => {
-        const updatedNotes = prevState.notes.filter(note => {
+  deleteNote = (noteId) => {
+    return noteAxios.delete(`/api/note/${noteId}`).then((response) => {
+      this.setState((prevState) => {
+        const updatedNotes = prevState.notes.filter((note) => {
           return note._Id !== noteId;
         });
         return { notes: updatedNotes };
@@ -77,27 +86,27 @@ export class AppContextProvider extends React.Component {
     });
   };
 
-  signup = userData => {
-    return noteAxios.post("/auth/signup", userData).then(response => {
+  signup = (userData) => {
+    return noteAxios.post("/auth/signup", userData).then((response) => {
       const { user, token } = response.data;
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", token);
       this.setState({
         user,
-        token
+        token,
       });
       return response;
     });
   };
 
-  login = userData => {
-    return noteAxios.post("/auth/login", userData).then(response => {
+  login = (userData) => {
+    return noteAxios.post("/auth/login", userData).then((response) => {
       const { user, token } = response.data;
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", token);
       this.setState({
         user,
-        token
+        token,
       });
       this.getNotes();
       return response;
@@ -110,7 +119,7 @@ export class AppContextProvider extends React.Component {
     this.setState({
       notes: [],
       user: {},
-      token: ""
+      token: "",
     });
   };
 
@@ -126,7 +135,7 @@ export class AppContextProvider extends React.Component {
           signup: this.signup,
           login: this.login,
           logout: this.logout,
-          ...this.state
+          ...this.state,
         }}
       >
         {this.props.children}
@@ -144,7 +153,7 @@ export function withAppContext(Component) {
   return function wrapperFunction(props) {
     return (
       <AppContext.Consumer>
-        {globalState => {
+        {(globalState) => {
           return <Component {...globalState} {...props} />;
         }}
       </AppContext.Consumer>

@@ -13,7 +13,7 @@ const app = express();
 // connect to db
 mongoose.set("useCreateIndex", true);
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI).then(
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }).then(
   () => {
     console.log("Database is now connected");
   },
@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, "client/build")));
 
 app.use(
   "/api",
-  expressjwt({ secret: process.env.SECRET, algorithms: ["RS256"] })
+  expressjwt({ secret: process.env.SECRET, algorithms: ["HS256"] })
 );
 
 // Add routes
