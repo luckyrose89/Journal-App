@@ -62,7 +62,7 @@ class NoteForm extends React.Component {
             onChange={this.handleChange}
             type="text"
             placeholder="title"
-            fullWidth
+            size="normal"
             margin="normal"
             variant="outlined"
             InputLabelProps={{
@@ -79,7 +79,9 @@ class NoteForm extends React.Component {
             placeholder="Enter text"
             fullWidth
             margin="normal"
-            variant="outlined"
+            multiline
+            variant="filled"
+            rowsMax={4}
             InputLabelProps={{
               shrink: true,
             }}

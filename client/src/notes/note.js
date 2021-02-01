@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+import ComputerIcon from "@material-ui/icons/Computer";
 import {
   Card,
   CardContent,
   CardHeader,
   Typography,
   CardActions,
-  Button
+  Button,
 } from "@material-ui/core";
 
 function Note(props) {
@@ -20,11 +21,17 @@ function Note(props) {
         className="cardHeadStyle"
       />
       <CardContent>
-        <div>
-          <Typography color="textPrimary">{props.note.body}</Typography>
+        <div style={{ width: "12rem" }}>
+          <Typography color="textPrimary" noWrap>
+            {props.note.body}
+          </Typography>
         </div>
       </CardContent>
       <CardActions className="cardHeadStyle">
+        <Button variant="contained" color="primary">
+          Read
+          <ComputerIcon style={{ paddingleft: "5px" }} />
+        </Button>
         <Link
           to={"/edit/" + props.note._id}
           style={{ color: "#fff", textDecoration: "none", paddingRight: 4 }}
@@ -41,7 +48,7 @@ function Note(props) {
           onClick={() => props.delete(props.note._id)}
         >
           Delete
-          <DeleteIcon style={{ paddingleft: 5 }} />
+          <DeleteIcon style={{ paddingleft: "5px" }} />
         </Button>
       </CardActions>
     </Card>

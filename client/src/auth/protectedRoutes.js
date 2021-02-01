@@ -11,7 +11,7 @@ function ProtectRoutes(props) {
   if (props.token) {
     return <Route {...rest} component={Component} />;
   } else {
-    return <Redirect to="/login" />;
+    return <Redirect to="/" />;
   }
 }
 

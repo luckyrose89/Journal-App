@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 
 import { Header, Footer, Homepage } from "../src/Landing/index";
@@ -8,7 +8,7 @@ import { Login, Signup, ProtectRoutes } from "../src/auth/index";
 
 function App() {
   return (
-    <Grid direction="column">
+    <Grid container direction="column">
       <Header />
       <Switch>
         <Route exact path="/" component={Homepage} />
