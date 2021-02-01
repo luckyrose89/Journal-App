@@ -5,9 +5,9 @@ import { withAppContext } from "../AppContext";
 import { Container, Grid } from "@material-ui/core";
 
 function NoteList(props) {
-  const notes = props.notes.map(note => {
+  const notes = props.notes.map((note) => {
     return (
-      <Grid item xs={12} md={4} key={note._id}>
+      <Grid item xs={12} sm={6} md={4} key={note._id}>
         <Note key={note._id} note={note} delete={props.deleteNote} />
       </Grid>
     );
@@ -20,7 +20,7 @@ function NoteList(props) {
       <Container maxWidth="lg" component="main">
         <Grid
           container
-          spacing={5}
+          spacing={3}
           alignItems="flex-start"
           style={{ marginTop: 20 }}
         >

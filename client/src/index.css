@@ -1,5 +1,10 @@
 /* landing Page Styles */
 
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
 .content-wrapper {
   min-height: 100%;
   margin-top: 100px;
