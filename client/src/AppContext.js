@@ -28,7 +28,7 @@ export class AppContextProvider extends React.Component {
     super();
     this.state = {
       notes: [],
-      user: JSON.parse(localStorage.getItem("user")) || {},
+      user: JSON.parse(localStorage.getItem("user")) || null,
       token: localStorage.getItem("token") || "",
     };
   }

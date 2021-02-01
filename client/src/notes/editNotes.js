@@ -1,6 +1,12 @@
 import React from "react";
 import { withAppContext } from "../AppContext";
-import { Container, TextField, Button, Typography } from "@material-ui/core";
+import {
+  Container,
+  TextField,
+  Button,
+  Typography,
+  Box,
+} from "@material-ui/core";
 import { typography } from "@material-ui/system";
 
 class EditNote extends React.Component {
@@ -9,49 +15,49 @@ class EditNote extends React.Component {
     this.state = {
       title: "",
       body: "",
-      errorMessage: ""
+      errorMessage: "",
     };
   }
 
   componentDidMount() {
     this.props
       .getNote(this.props.match.params.id)
-      .then(response => {
+      .then((response) => {
         this.setState({
           title: response.title,
-          body: response.body
+          body: response.body,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
   clearInputs = () => {
     this.setState({
       title: "",
-      body: ""
+      body: "",
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props
       .editNote(this.props.match.params.id, this.state)
-      .then(response => {
+      .then((response) => {
         this.clearInputs();
         this.props.history.push("/notes");
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({
-          errorMessage: err.response.data.message
+          errorMessage: err.response.data.message,
         });
       });
   };
@@ -69,37 +75,43 @@ class EditNote extends React.Component {
             Edit Note
           </Typography>
           <form onSubmit={this.handleSubmit}>
-            <TextField
-              id="outlined-full-width"
-              label="Title"
-              style={{ margin: 8, marginBottom: 15 }}
-              name="title"
-              value={this.state.title}
-              onChange={this.handleChange}
-              type="text"
-              placeholder="title"
-              fullWidth
-              margin="normal"
-              variant="outlined"
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
-            <TextField
-              id="outlined-full-width"
-              label="Entry"
-              style={{ margin: 8, marginBottom: 15 }}
-              name="body"
-              value={this.state.body}
-              onChange={this.handleChange}
-              placeholder="Enter text"
-              fullWidth
-              margin="normal"
-              variant="outlined"
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
+            <Box width="50%">
+              <TextField
+                id="outlined-full-width"
+                label="Title"
+                style={{ margin: 8, marginBottom: 15 }}
+                name="title"
+                value={this.state.title}
+                onChange={this.handleChange}
+                type="text"
+                placeholder="title"
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </Box>
+            <Box width="85%">
+              <TextField
+                id="outlined-full-width"
+                label="Entry"
+                style={{ margin: 8, marginBottom: 15 }}
+                name="body"
+                value={this.state.body}
+                onChange={this.handleChange}
+                placeholder="Enter text"
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                multiline
+                rowsMax={4}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </Box>
             <Button
               type="submit"
               variant="contained"

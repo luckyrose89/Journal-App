@@ -115,6 +115,11 @@ function Header(props) {
                   onClose={handleClose}
                 >
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  <MenuItem>
+                    <Link to="/notes" style={{ color: "#000000" }}>
+                      Notes
+                    </Link>
+                  </MenuItem>
                 </Menu>
               </React.Fragment>
             )}

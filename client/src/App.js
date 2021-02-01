@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 
 import { Header, Footer, Homepage } from "../src/Landing/index";
-import { NoteList, EditNote } from "../src/notes/index";
+import { NoteList, EditNote, ReadNote } from "../src/notes/index";
 import { Login, Signup, ProtectRoutes } from "../src/auth/index";
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <ProtectRoutes path="/notes" component={NoteList} />
         <ProtectRoutes path="/edit/:id" component={EditNote} />
+        <ProtectRoutes path="/notes/:id" component={ReadNote} />
       </Switch>
       <Footer />
     </Grid>

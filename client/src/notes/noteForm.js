@@ -1,5 +1,11 @@
 import React from "react";
-import { Container, TextField, Button, Typography } from "@material-ui/core";
+import {
+  Container,
+  TextField,
+  Button,
+  Typography,
+  Box,
+} from "@material-ui/core";
 
 class NoteForm extends React.Component {
   constructor() {
@@ -53,39 +59,43 @@ class NoteForm extends React.Component {
           New Entry | Create a Note
         </Typography>
         <form onSubmit={this.handleSubmit}>
-          <TextField
-            id="outlined-full-width"
-            label="Title"
-            style={{ margin: 8, marginBottom: 15 }}
-            name="title"
-            value={this.state.title}
-            onChange={this.handleChange}
-            type="text"
-            placeholder="title"
-            size="normal"
-            margin="normal"
-            variant="outlined"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-          <TextField
-            id="outlined-full-width"
-            label="Entry"
-            style={{ margin: 8, marginBottom: 15 }}
-            name="body"
-            value={this.state.body}
-            onChange={this.handleChange}
-            placeholder="Enter text"
-            fullWidth
-            margin="normal"
-            multiline
-            variant="filled"
-            rowsMax={4}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
+          <Box width="50%">
+            <TextField
+              id="outlined-full-width"
+              label="Title"
+              style={{ margin: 8, marginBottom: 15 }}
+              name="title"
+              value={this.state.title}
+              onChange={this.handleChange}
+              type="text"
+              placeholder="title"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </Box>
+          <Box width="85%">
+            <TextField
+              id="outlined-full-width"
+              label="Entry"
+              style={{ margin: 8, marginBottom: 15 }}
+              name="body"
+              value={this.state.body}
+              onChange={this.handleChange}
+              placeholder="Enter text"
+              margin="normal"
+              multiline
+              fullWidth
+              variant="filled"
+              rowsMax={4}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </Box>
           <Button
             type="submit"
             variant="contained"
