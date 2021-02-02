@@ -1,14 +1,21 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { Grid } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 
 import { Header, Footer, Homepage } from "../src/Landing/index";
 import { NoteList, EditNote, ReadNote } from "../src/notes/index";
 import { Login, Signup, ProtectRoutes } from "../src/auth/index";
 
+const useStyles = makeStyles({
+  content: {
+    backgroundColor: "#fef6e4",
+  },
+});
+
 function App() {
+  const classes = useStyles();
   return (
-    <Grid container direction="column" style={{ backgroundColor: "#fef6e4" }}>
+    <Grid container direction="column" className={classes.content}>
       <Header />
       <Switch>
         <Route exact path="/" component={Homepage} />

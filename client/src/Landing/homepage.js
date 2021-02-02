@@ -11,6 +11,14 @@ const useStyles = makeStyles({
   },
   description: {
     textAlign: "center",
+    maxWidth: "600px",
+    margin: "0 auto",
+  },
+  landingImg: {
+    objectFit: "contain",
+    maxWidth: "100%",
+    height: "auto",
+    display: "block",
   },
 });
 
@@ -20,14 +28,19 @@ const Homepage = () => {
     <Grid
       container
       spacing={2}
+      justify="center"
       alignItems="center"
       className={classes.container}
     >
       <Grid item xs={1} />
-      <Grid item xs={5}>
-        <img src={girlImage} alt="girl writing journal with cat" />
+      <Grid item xs={10} md={5}>
+        <img
+          src={girlImage}
+          alt="girl writing journal with cat"
+          className={classes.landingImg}
+        />
       </Grid>
-      <Grid item xs={5} className={classes.description}>
+      <Grid item xs={10} md={5} className={classes.description}>
         <Typography paragraph>
           Welcome to Thoughts & More, your very own personal journal to document
           your days.
