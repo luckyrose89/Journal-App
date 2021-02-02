@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   },
   description: {
     textAlign: "center",
-    maxWidth: "600px",
+    maxWidth: "500px",
     margin: "0 auto",
   },
   landingImg: {
@@ -32,7 +32,7 @@ const Homepage = () => {
       alignItems="center"
       className={classes.container}
     >
-      <Grid item xs={1} />
+      <Grid item md={1} />
       <Grid item xs={10} md={5}>
         <img
           src={girlImage}
@@ -59,7 +59,7 @@ const Homepage = () => {
           </Button>
         </Typography>
       </Grid>
-      <Grid item xs={1} />
+      <Grid item md={1} />
     </Grid>
   );
 };
