@@ -8,7 +8,7 @@ import { Login, Signup, ProtectRoutes } from "../src/auth/index";
 
 function App() {
   return (
-    <Grid container direction="column">
+    <Grid container direction="column" style={{ backgroundColor: "#fef6e4" }}>
       <Header />
       <Switch>
         <Route exact path="/" component={Homepage} />

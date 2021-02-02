@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { withAppContext } from "../AppContext";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import {
@@ -7,7 +8,7 @@ import {
   Avatar,
   TextField,
   Button,
-  Typography
+  Typography,
 } from "@material-ui/core";
 
 class Signup extends React.Component {
@@ -16,14 +17,14 @@ class Signup extends React.Component {
     this.state = {
       username: "",
       password: "",
-      errorMessage: ""
+      errorMessage: "",
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -31,11 +32,11 @@ class Signup extends React.Component {
     this.setState({
       username: "",
       password: "",
-      errorMessage: ""
+      errorMessage: "",
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props
       .signup(this.state)
@@ -43,9 +44,9 @@ class Signup extends React.Component {
         this.clearInputs();
         this.props.history.push("/notes");
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({
-          errorMessage: err.response.data.message
+          errorMessage: err.response.data.message,
         });
       });
   };
@@ -100,6 +101,12 @@ class Signup extends React.Component {
             </form>
             <Typography color="error" variant="body1">
               {this.state.errorMessage}
+            </Typography>
+            <Typography paragraph align="center" style={{ padding: "15px 0" }}>
+              Already registered?{" "}
+              <Link to="/login" style={{ color: "#001858" }}>
+                Login Now
+              </Link>
             </Typography>
           </div>
         </Container>

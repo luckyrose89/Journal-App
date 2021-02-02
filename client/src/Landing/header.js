@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   linkColor: {
-    color: "blue",
+    color: "#001858",
   },
 }));
 
@@ -116,7 +116,7 @@ function Header(props) {
                 >
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>
                   <MenuItem>
-                    <Link to="/notes" style={{ color: "#000000" }}>
+                    <Link to="/notes" className={classes.linkColor}>
                       Notes
                     </Link>
                   </MenuItem>
