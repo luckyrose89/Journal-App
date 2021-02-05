@@ -23,7 +23,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <ProtectRoutes path="/notes" component={NoteList} />
         <ProtectRoutes path="/edit/:id" component={EditNote} />
-        <ProtectRoutes path="/notes/:id" component={ReadNote} />
+        <ProtectRoutes path="/read/:id" component={ReadNote} />
       </Switch>
       <Footer />
     </Grid>

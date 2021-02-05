@@ -7,7 +7,6 @@ import {
   Typography,
   Box,
 } from "@material-ui/core";
-import { typography } from "@material-ui/system";
 
 class EditNote extends React.Component {
   constructor() {

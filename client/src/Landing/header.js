@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header(props) {
+const Header = (props) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -128,6 +128,6 @@ function Header(props) {
       </Paper>
     </Grid>
   );
-}
+};
 
 export default withAppContext(Header);

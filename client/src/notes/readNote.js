@@ -1,7 +1,54 @@
-import React from "react";
+import React, { Component } from "react";
+import { withAppContext } from "../AppContext";
+import { Container, Typography, Box } from "@material-ui/core";
 
-const ReadNote = () => {
-  return <div>Read your note</div>;
-};
+class ReadNote extends Component {
+  constructor() {
+    super();
+    this.state = {
+      title: "",
+      body: "",
+    };
+  }
+  componentDidMount() {
+    this.props
+      .getNote(this.props.match.params.id)
+      .then((res) => {
+        this.setState({
+          title: res.title,
+          body: res.body,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+  render() {
+    const { title, body } = this.state;
+    return (
+      <div>
+        <Container maxWidth="lg" style={{ marginTop: "100px" }}>
+          <Box>
+            <Box>
+              <Typography variant="h4" color="primary" gutterBottom>
+                {title}
+              </Typography>
+            </Box>
+            <Box>
+              <Typography
+                style={{
+                  textDecoration: "underline",
+                  textDecorationColor: "#f582ae",
+                }}
+              >
+                {body}
+              </Typography>
+            </Box>
+          </Box>
+        </Container>
+      </div>
+    );
+  }
+}
 
-export default ReadNote;
+export default withAppContext(ReadNote);

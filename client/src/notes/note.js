@@ -28,16 +28,21 @@ function Note(props) {
         </div>
       </CardContent>
       <CardActions className="cardHeadStyle">
-        <Button variant="contained" color="primary">
-          Read
-          <ComputerIcon style={{ paddingleft: "5px" }} />
-        </Button>
+        <Link
+          to={"/read/" + props.note._id}
+          style={{ color: "#fff", textDecoration: "none", paddingRight: 4 }}
+        >
+          <Button variant="contained" color="primary">
+            <span style={{ marginRight: "4px" }}>Read</span>
+            <ComputerIcon />
+          </Button>
+        </Link>
         <Link
           to={"/edit/" + props.note._id}
           style={{ color: "#fff", textDecoration: "none", paddingRight: 4 }}
         >
           <Button variant="contained" color="primary">
-            Edit
+            <span>Edit</span>
             <EditIcon />
           </Button>
         </Link>
@@ -47,7 +52,7 @@ function Note(props) {
           color="secondary"
           onClick={() => props.delete(props.note._id)}
         >
-          Delete
+          <span>Delete</span>
           <DeleteIcon style={{ paddingleft: "5px" }} />
         </Button>
       </CardActions>
