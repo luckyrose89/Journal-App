@@ -28,7 +28,7 @@ class ReadNote extends Component {
     return (
       <div>
         <Container maxWidth="lg" style={{ marginTop: "100px" }}>
-          <Box>
+          <Container maxWidth="md">
             <Box>
               <Typography variant="h4" color="primary" gutterBottom>
                 {title}
@@ -39,12 +39,13 @@ class ReadNote extends Component {
                 style={{
                   textDecoration: "underline",
                   textDecorationColor: "#f582ae",
+                  whiteSpace: "pre-line",
                 }}
               >
                 {body}
               </Typography>
             </Box>
-          </Box>
+          </Container>
         </Container>
       </div>
     );

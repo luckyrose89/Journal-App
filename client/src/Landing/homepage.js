@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Grid, makeStyles, Button, Box, Typography } from "@material-ui/core";
+import { Grid, makeStyles, Button, Typography } from "@material-ui/core";
 
+import { withAppContext } from "../AppContext";
 import girlImage from "../assets/images/cute-girl-writing-journal.jpg";
 
 const useStyles = makeStyles({
@@ -22,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Homepage = () => {
+const Homepage = (props) => {
   const classes = useStyles();
   return (
     <Grid
@@ -53,15 +54,17 @@ const Homepage = () => {
         <Typography paragraph>
           So what are you waiting for? Start now.
         </Typography>
-        <Typography paragraph>
-          <Button variant="contained" color="primary">
-            <Link to="/signup">Sign Up Now</Link>
-          </Button>
-        </Typography>
+        {!props.token && (
+          <Typography paragraph>
+            <Button variant="contained" color="primary">
+              <Link to="/signup">Sign Up Now</Link>
+            </Button>
+          </Typography>
+        )}
       </Grid>
       <Grid item md={1} />
     </Grid>
   );
 };
 
-export default Homepage;
+export default withAppContext(Homepage);

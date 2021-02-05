@@ -7,13 +7,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
-    minHeight: "60vh",
+    minHeight: "100vh",
     width: "100%",
   },
   footer: {
     padding: theme.spacing(2),
     marginTop: "auto",
-    backgroundColor: "white",
   },
 }));
 
