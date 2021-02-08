@@ -31,7 +31,7 @@ const getNote = async (req, res, next) => {
   try {
     const note = await Note.findOne({
       _id: req.params.noteId,
-      user: req.user._id
+      user: req.user._id,
     });
     return res.status(200).json(note);
   } catch (err) {
@@ -45,7 +45,7 @@ const updateNote = async (req, res, next) => {
   try {
     const note = await Note.findOne({
       _id: req.params.noteId,
-      user: req.user._id
+      user: req.user._id,
     });
     note.title = req.body.title;
     note.body = req.body.body;
@@ -62,7 +62,7 @@ const deleteNote = async (req, res, next) => {
   try {
     const noteToDelete = await Note.findOneAndDelete({
       _id: req.params.noteId,
-      user: req.user._id
+      user: req.user._id,
     });
     return res.status(200).json(noteToDelete);
   } catch (err) {
@@ -76,5 +76,5 @@ exports = module.exports = {
   addNote,
   getNote,
   updateNote,
-  deleteNote
+  deleteNote,
 };
