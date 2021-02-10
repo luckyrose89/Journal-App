@@ -1,3 +1,4 @@
 module.exports = {
-  noteCtrl: require("./noteControl")
+  noteCtrl: require("./noteControl"),
+  toneCtrl: require("./toneControl"),
 };
