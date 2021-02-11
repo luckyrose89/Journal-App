@@ -20,7 +20,7 @@ const postTone = async (req, res, next) => {
       content_type: "application/json",
     };
     const toneAnalysis = await toneAnalyzer.tone(toneParams);
-    return res.status(200).json(toneAnalysis);
+    return res.status(200).json(toneAnalysis.result.document_tone.tones);
   } catch (err) {
     res.status(401);
     return next(err);

@@ -10,6 +10,13 @@ const noteSchema = new Schema({
     type: String,
     required: true,
   },
+  tones: [
+    {
+      score: Number,
+      tone_id: String,
+      tone_name: String,
+    },
+  ],
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
