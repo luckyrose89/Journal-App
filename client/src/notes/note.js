@@ -10,9 +10,41 @@ import {
   Typography,
   CardActions,
   Button,
+  Box,
+  makeStyles,
 } from "@material-ui/core";
 
+const useStyles = makeStyles((theme) => ({
+  emotionBox: {
+    display: "flex",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "10px 0",
+  },
+  emotionSpan: {
+    display: "inline-block",
+    width: "10px",
+    height: "10px",
+    verticalAlign: "middle",
+    marginRight: "4px",
+  },
+  emotionDescription: {
+    marginRight: "8px",
+  },
+}));
+
 function Note(props) {
+  const classes = useStyles();
+  const emotionColors = {
+    anger: "#ff2400",
+    fear: "#363636",
+    joy: "#fce205",
+    sadness: "#777B7e",
+    confident: "#2e8b57",
+    analytical: "#0e4c92",
+    tentative: "#622a0f",
+  };
   return (
     <Card>
       <CardHeader
@@ -56,6 +88,19 @@ function Note(props) {
           <DeleteIcon style={{ paddingleft: "5px" }} />
         </Button>
       </CardActions>
+      <Box className={classes.emotionBox}>
+        {props.note.tones.map((tone) => (
+          <div key={tone._id}>
+            <span
+              className={classes.emotionSpan}
+              style={{ backgroundColor: `${emotionColors[tone.tone_id]}` }}
+            >
+              {" "}
+            </span>
+            <span className={classes.emotionDescription}>{tone.tone_name}</span>
+          </div>
+        ))}
+      </Box>
     </Card>
   );
 }

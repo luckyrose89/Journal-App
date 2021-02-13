@@ -51,12 +51,14 @@ export class AppContextProvider extends React.Component {
       this.setState((prevState) => {
         return { notes: [...prevState.notes, response.data] };
       });
+      console.log(response);
       return response;
     });
   };
 
   getNote = (noteId) => {
     return noteAxios.get(`/api/note/${noteId}`).then((response) => {
+      console.log(response.data);
       return response.data;
     });
   };
@@ -85,6 +87,12 @@ export class AppContextProvider extends React.Component {
       return response;
     });
   };
+
+  // create function to add tone analysis to each note
+
+  // postTextForTone = (noteId) => {
+
+  // }
 
   signup = (userData) => {
     return noteAxios.post("/auth/signup", userData).then((response) => {
