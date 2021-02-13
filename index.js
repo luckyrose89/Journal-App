@@ -57,7 +57,6 @@ app.use(
 
 // Add routes
 app.use("/api/note", noteRouter);
-app.use("/tone", toneRouter);
 app.use("/auth", authRouter);
 
 // Error handling middleware

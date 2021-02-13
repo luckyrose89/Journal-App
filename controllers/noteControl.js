@@ -1,4 +1,16 @@
 "use strict";
+require("dotenv").config();
+const ToneAnalyzerV3 = require("ibm-watson/tone-analyzer/v3");
+const { IamAuthenticator } = require("ibm-watson/auth");
+
+const toneAnalyzer = new ToneAnalyzerV3({
+  version: "2017-09-21",
+  authenticator: new IamAuthenticator({
+    apikey: process.env.TONE_ANALYZER_API_KEY,
+  }),
+  serviceUrl:
+    "https://api.eu-gb.tone-analyzer.watson.cloud.ibm.com/instances/747ee2d7-6fa9-4692-a232-38d9c559eb4c",
+});
 
 const Note = require("../models/schema");
 
@@ -15,7 +27,16 @@ const getAll = async (req, res, next) => {
 
 // Create a note
 const addNote = async (req, res, next) => {
-  const note = new Note(req.body);
+  const note = new Note({
+    title: req.body.title,
+    body: req.body.body,
+  });
+  const toneParams = {
+    toneInput: { text: req.body.body },
+    content_type: "application/json",
+  };
+  const toneAnalysis = await toneAnalyzer.tone(toneParams);
+  note.tones = toneAnalysis.result.document_tone.tones;
   note.user = req.user._id;
   try {
     const newNote = await note.save();
@@ -47,8 +68,15 @@ const updateNote = async (req, res, next) => {
       _id: req.params.noteId,
       user: req.user._id,
     });
+
     note.title = req.body.title;
     note.body = req.body.body;
+    const toneParams = {
+      toneInput: { text: req.body.body },
+      content_type: "application/json",
+    };
+    const toneAnalysis = await toneAnalyzer.tone(toneParams);
+    note.tones = toneAnalysis.result.document_tone.tones;
     const updatedNote = await note.save();
     return res.status(200).json(updatedNote);
   } catch (err) {
