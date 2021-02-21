@@ -4,7 +4,9 @@ Thoughts & more is a note taking application. It can also be used as a personal 
 
 ## Technologies
 
-This application is developed with **MERN** (Mongo DB, Express JS, React & Node JS) stack technologies. It uses JWT based local authentication to login and register users to the app interface.
+This application is developed with **MERN** (Mongo DB, Express JS, React & Node JS) stack technologies. It uses JWT based local authentication to login and register users to the app interface. The latest version of this application uses IBM Watson Tone Analyzer API to analyze the emotional tone of user entries.
+
+The application make extensive use of Google's Material UI for styling.
 
 ## Getting Started
 
